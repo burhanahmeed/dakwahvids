@@ -22,7 +22,11 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600;700;800;900&display=swap' }
+    ],
+    script: [
+      { src: 'https://code.iconify.design/1/1.0.7/iconify.min.js' }
     ]
   },
   /*
@@ -60,6 +64,18 @@ export default {
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
   ],
+  chakra: {
+    extendTheme: {
+      colors: {
+        brand: { /* ... */ }
+      },
+      fonts: {
+        heading: '"Montserrat", sans-serif',
+        body: '"Montserrat", sans-serif',
+        mono: '"Montserrat", sans-serif'
+      },
+    }
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

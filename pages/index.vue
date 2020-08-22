@@ -1,131 +1,58 @@
-<template>
-  <div class="container">
-    <CBox
-      v-bind="mainStyles[colorMode]"
-      d="flex"
-      w="100vw"
-      h="100vh"
-      flex-dir="column"
-      justify-content="center"
-    >
-      <CHeading text-align="center" mb="4">
-        ⚡️ Hello chakra-ui/vue
-      </CHeading>
-      <CFlex justify="center" direction="column" align="center">
-        <CBox mb="3">
-          <CIconButton
-            mr="3"
-            :icon="colorMode === 'light' ? 'moon' : 'sun'"
-            :aria-label="`Switch to ${
-              colorMode === 'light' ? 'dark' : 'light'
-            } mode`"
-            @click="toggleColorMode"
-          />
-          <CButton
-            left-icon="info"
-            variant-color="blue"
-            @click="showToast"
-          >
-            Show Toast
-          </CButton>
-        </CBox>
-        <CAvatarGroup>
-          <CAvatar
-            name="Evan You"
-            alt="Evan You"
-            src="https://pbs.twimg.com/profile_images/1206997998900850688/cTXTQiHm_400x400.jpg"
-          >
-            <CAvatarBadge size="1.0em" bg="green.500" />
-          </CAvatar>
-          <CAvatar
-            name="Jonathan Bakebwa"
-            alt="Jonathan Bakebwa"
-            src="https://res.cloudinary.com/xtellar/image/upload/v1572857445/me_zqos4e.jpg"
-          >
-            <CAvatarBadge size="1.0em" bg="green.500" />
-          </CAvatar>
-          <CAvatar
-            name="Segun Adebayo"
-            alt="Segun Adebayo"
-            src="https://pbs.twimg.com/profile_images/1169353373012897802/skPUWd6e_400x400.jpg"
-          >
-            <CAvatarBadge size="1.0em" bg="green.500" />
-          </CAvatar>
-          <CAvatar src="pop">
-            <CAvatarBadge size="1.0em" border-color="papayawhip" bg="tomato" />
-          </CAvatar>
-        </CAvatarGroup>
-        <CButton
-          left-icon="close"
-          variant-color="red"
-          mt="3"
-          @click="showModal = true"
-        >
-          Delete Account
-        </CButton>
-        <CModal :is-open="showModal">
-          <CModalOverlay />
-          <CModalContent>
-            <CModalHeader>Are you sure?</CModalHeader>
-            <CModalBody>Deleting user cannot be undone</CModalBody>
-            <CModalFooter>
-              <CButton @click="showModal = false">
-                Cancel
-              </CButton>
-              <CButton
-                margin-left="3"
-                variant-color="red"
-                @click="showModal = false"
-              >
-                Delete User
-              </CButton>
-            </CModalFooter>
-            <CModalCloseButton @click="showModal = false" />
-          </CModalContent>
-        </CModal>
-      </CFlex>
-    </CBox>
-  </div>
+<template>  
+  <c-box>
+    <header-title>
+      <c-box d="flex">
+        <c-box p="6" w="40%">
+          <c-text fontSize="xl">
+            <span style="font-weight: 700">DakwahVids</span> is a curated Islamic videos or lectural videos from mostly official Dakwah account.
+          </c-text>
+        </c-box>
+        <c-box w="60%">
+          <c-box p="4">
+            <iframe width="100%" height="250px" src="https://www.youtube-nocookie.com/embed/7bfQJS5Thec?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </c-box>
+        </c-box>
+      </c-box>
+    </header-title>
+    <c-box mt="5">
+      <c-box align="center" p="4">
+        <c-text fontSize="xl" fontWeight="700">Channels</c-text>
+      </c-box>
+      <c-box p="4" align="center">
+        <c-box w="80%">
+          <c-input placeholder="Basic usage" />
+        </c-box>
+      </c-box>
+      <c-box px="4" pb="4" align="center">
+        <c-box w="80%" align="left">
+          <c-box
+            v-for="i in 6"
+            :key="i"
+            d="inline-block"
+            w="31%" 
+            boxShadow="0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)"
+            m="2"
+          >            
+            <c-box p="3">
+              Daarul Channel
+            </c-box>
+          </c-box>
+        </c-box>
+      </c-box>
+    </c-box>
+  </c-box>
 </template>
 
-<script lang="js">
-import {
-  CBox,
-  CButton,
-  CAvatarGroup,
-  CAvatar,
-  CAvatarBadge,
-  CModal,
-  CModalContent,
-  CModalOverlay,
-  CModalHeader,
-  CModalFooter,
-  CModalBody,
-  CModalCloseButton,
-  CIconButton,
-  CFlex,
-  CHeading
-} from '@chakra-ui/vue'
-
+<script>
+import { CBox, CText, CInput } from "@chakra-ui/vue";
+import HeaderTitle from '../components/core/HeaderTitle';
 export default {
   name: 'App',
-  inject: ['$chakraColorMode', '$toggleColorMode'],
   components: {
+    HeaderTitle,
     CBox,
-    CButton,
-    CAvatarGroup,
-    CAvatar,
-    CAvatarBadge,
-    CModal,
-    CModalContent,
-    CModalOverlay,
-    CModalHeader,
-    CModalFooter,
-    CModalBody,
-    CModalCloseButton,
-    CIconButton,
-    CFlex,
-    CHeading
+    CText,
+    CInput
   },
   data () {
     return {
@@ -143,26 +70,9 @@ export default {
     }
   },
   computed: {
-    colorMode () {
-      return this.$chakraColorMode()
-    },
-    theme () {
-      return this.$chakraTheme()
-    },
-    toggleColorMode () {
-      return this.$toggleColorMode
-    }
   },
   methods: {
-    showToast () {
-      this.$toast({
-        title: 'Account created.',
-        description: "We've created your account for you.",
-        status: 'success',
-        duration: 10000,
-        isClosable: true
-      })
-    }
+    
   }
 }
 </script>
