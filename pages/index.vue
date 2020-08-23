@@ -3,6 +3,14 @@
     <header-title>
       <c-box d="flex">
         <c-box p="6" w="40%">
+          <c-box w="100%" align="left">
+            <c-image
+              h="60px"
+              my="3"
+              src="/imgs/DawahVids.svg"
+              alt="Logo dawah vids"
+            ></c-image>
+          </c-box>
           <c-text fontSize="xl">
             <span style="font-weight: 700">DakwahVids</span> is a curated Islamic videos or lectural videos from mostly official Dakwah account.
           </c-text>

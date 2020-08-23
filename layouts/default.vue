@@ -7,8 +7,13 @@
           <c-box w="100%" m="0" p="0">
             <c-box bg="green.400" w="100%" h="50px" d="flex" justify-content="space-between" py="3" boxShadow="0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)">
               <c-box>
-                <c-link class="no-underline" as="router-link" to="/" p="4" fontWeight="700">
-                  DawahVids
+                <c-link class="no-underline" as="router-link" to="/">
+                  <c-image
+                    ml="3"
+                    h="30px"
+                    src="/imgs/DawahVids-white.svg"
+                    alt="Logo dawah vids"
+                  ></c-image>
                 </c-link>
               </c-box>
               <c-box>
@@ -43,7 +48,8 @@ import {
   CBox,
   CLink,
   CText,
-  CBadge
+  CBadge,
+  CImage
 } from '@chakra-ui/vue'
 
 export default {
@@ -52,6 +58,7 @@ export default {
     CThemeProvider,
     CColorModeProvider,
     CReset,
+    CImage,
     CBox,
     CLink,
     CText,
