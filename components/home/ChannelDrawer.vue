@@ -19,6 +19,9 @@
 
 We are not affiliated with any social networks / agencies! Contact us directly :), only we know our business better than anyone else. :)</c-text>
       </c-box>
+      <c-box align="center">
+        <c-button variant-color="green" size="xs" as="a" href="/" target="_blank">Visit channel</c-button>
+      </c-box>
     </drawer>
 </template>
 
@@ -28,11 +31,13 @@ import {
   CText, 
   CInput,
   CImage,
-  CBadge
+  CBadge,
+  CButton
 } from "@chakra-ui/vue";
 import Drawer from "../core/Drawer";
 export default {
   components: {
+    CButton,
     Drawer,
     CBox, 
     CText, 
