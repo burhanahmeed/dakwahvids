@@ -12,10 +12,10 @@
                 </c-link>
               </c-box>
               <c-box>
-                <c-link class="no-underline" as="router-link" to="/icons" px="2" py="4" color="white" fontWeight="600">
+                <!-- <c-link class="no-underline" as="router-link" to="/icons" px="2" py="4" color="white" fontWeight="600">
                   Collections
-                </c-link>
-                <c-link class="no-underline" as="router-link" to="/getting-started" px="2" py="4" color="white" fontWeight="600">
+                </c-link> -->
+                <c-link class="no-underline" is-external href="https://github.com/burhanahmeed/dakwahvids" px="2" py="4" color="white" fontWeight="600">
                   <span style="font-size: 25px; display: inline-block;" class="iconify" data-icon="mdi:github" data-inline="false"></span>
                 </c-link>
               </c-box>
@@ -42,7 +42,8 @@ import {
   CReset,
   CBox,
   CLink,
-  CText
+  CText,
+  CBadge
 } from '@chakra-ui/vue'
 
 export default {
@@ -53,7 +54,8 @@ export default {
     CReset,
     CBox,
     CLink,
-    CText
+    CText,
+    CBadge
   }
 }
 </script>

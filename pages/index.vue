@@ -25,18 +25,9 @@
       </c-box>
       <c-box px="4" pb="4" align="center">
         <c-box w="80%" align="left">
-          <c-box
-            v-for="i in 6"
-            :key="i"
-            d="inline-block"
-            w="31%" 
-            boxShadow="0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)"
-            m="2"
-          >            
-            <c-box p="3">
-              Daarul Channel
-            </c-box>
-          </c-box>
+          <template v-for="i in 6">
+            <Channel :key="i" />
+          </template>
         </c-box>
       </c-box>
     </c-box>
@@ -44,15 +35,25 @@
 </template>
 
 <script>
-import { CBox, CText, CInput } from "@chakra-ui/vue";
+import { 
+  CBox, 
+  CText, 
+  CInput,
+  CImage,
+  CBadge
+} from "@chakra-ui/vue";
 import HeaderTitle from '../components/core/HeaderTitle';
+import Channel from '../components/channel';
 export default {
   name: 'App',
   components: {
     HeaderTitle,
+    Channel,
     CBox,
     CText,
-    CInput
+    CInput,
+    CImage,
+    CBadge
   },
   data () {
     return {
