@@ -33,8 +33,8 @@
       </c-box>
       <c-box px="4" pb="4" align="center">
         <c-box w="80%" align="left">
-          <template v-for="i in 6">
-            <Channel :key="i" />
+          <template v-for="i in channels">
+            <Channel :key="i" :payload="i" />
           </template>
         </c-box>
       </c-box>
@@ -52,6 +52,7 @@ import {
 } from "@chakra-ui/vue";
 import HeaderTitle from '../components/core/HeaderTitle';
 import Channel from '../components/channel';
+import { useFetch } from '../nuxtUtils'
 export default {
   name: 'App',
   components: {
@@ -75,13 +76,17 @@ export default {
           bg: 'white',
           color: 'gray.900'
         }
-      }
+      },
+      channels: []
     }
   },
   computed: {
   },
   methods: {
     
+  },
+  mounted () {
+    this.channels = useFetch();
   }
 }
 </script>

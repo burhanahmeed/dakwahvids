@@ -14,14 +14,14 @@
             rounded="full"
             h="50px"
             w="50px"
-            src="https://bit.ly/chakra-jonathan-bakebwa"
-            alt="Jonathan Bakebwa"
+            :src="payload.snippet.thumbnails.default.url"
+            :alt="payload.snippet.title"
           />
         </c-box>
-        <c-box ml="4">
-          <c-text fontWeight="700">Daarul Hijrah</c-text>
-          <c-text fontSize="xs">40,000 subscribers</c-text>
-          <c-badge variant-color="green">English</c-badge>
+        <c-box ml="4" w="70%">
+          <c-text fontWeight="700" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">{{ payload.snippet.title }}</c-text>
+          <c-text fontSize="xs">{{ number_format(payload.statistics.subscriberCount) }} subscribers</c-text>
+          <c-badge mr="1" variant-color="green" v-for="lang in payload.lang" :key="lang">{{ lang }}</c-badge>
         </c-box>
       </c-box>
     </c-box>
@@ -39,6 +39,7 @@ import {
 } from "@chakra-ui/vue";
 import ChannelDrawer from '../components/home/ChannelDrawer';
 export default {
+  props: ['payload'],
   components: {
     ChannelDrawer,
     CBox, 
@@ -55,6 +56,9 @@ export default {
   methods: {
     close () {
       this.isOpen = false;
+    },
+    number_format (number) {
+      return new Intl.NumberFormat().format(number)
     }
   }
 }
