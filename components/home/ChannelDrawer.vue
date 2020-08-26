@@ -1,26 +1,24 @@
 <template>
-    <drawer :isOpen="isOpen" @close="close" title="Daarul Hijr">
+    <drawer :isOpen="isOpen" @close="close" :title="payload.snippet.title" overflow="auto">
       <c-box align="center">
         <c-image
           rounded="full"
           h="80px"
           w="80px"
-          src="https://bit.ly/chakra-jonathan-bakebwa"
-          alt="Jonathan Bakebwa"
+          :src="payload.snippet.thumbnails.default.url"
+          :alt="payload.snippet.title"
         />
       </c-box>
       <c-box p="4" align="center">
-        <c-text fontSize="xl" fontWeight="700">Daarul Hijr</c-text>
-        <c-text fontSize="xs">40,000 subscribers</c-text>
-        <c-badge variant-color="green">English</c-badge>
+        <c-text fontSize="xl" fontWeight="700">{{ payload.snippet.title }}</c-text>
+        <c-text fontSize="xs">{{ numberFormat(payload.statistics.subscriberCount) }} subscribers</c-text>
+        <c-badge mr="1" variant-color="green" v-for="lang in payload.lang" :key="lang">{{ lang }}</c-badge>
       </c-box>
       <c-box p="4">
-        <c-text fontSize="xs">For business enquiries (including hiring our talents for events), email us at sylvia@noc.com.sg (cc ryan@noc.com.sg)
-
-We are not affiliated with any social networks / agencies! Contact us directly :), only we know our business better than anyone else. :)</c-text>
+        <c-text fontSize="xs">{{ payload.snippet.description }}</c-text>
       </c-box>
-      <c-box align="center">
-        <c-button variant-color="green" size="xs" as="a" href="/" target="_blank">Visit channel</c-button>
+      <c-box align="center" mt="4">
+        <c-button variant-color="green" size="xs" as="a" :href="`https://www.youtube.com/channel/${payload.id}`" target="_blank">Visit channel</c-button>
       </c-box>
     </drawer>
 </template>
@@ -45,7 +43,7 @@ export default {
     CImage,
     CBadge
   },
-  props: ['isOpen'],
+  props: ['isOpen', 'payload'],
   data () {
     return {
     }

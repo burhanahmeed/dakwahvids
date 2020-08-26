@@ -5,7 +5,7 @@
     boxShadow="0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)"
     m="2"
     cursor="pointer"
-    @click="isOpen = true"
+    @click="selectChannel"
   >            
     <c-box p="3">
       <c-box d="flex">
@@ -17,15 +17,16 @@
             :src="payload.snippet.thumbnails.default.url"
             :alt="payload.snippet.title"
           />
-        </c-box>
+        </c-box>        
         <c-box ml="4" w="70%">
           <c-text fontWeight="700" whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">{{ payload.snippet.title }}</c-text>
-          <c-text fontSize="xs">{{ number_format(payload.statistics.subscriberCount) }} subscribers</c-text>
+          <c-text fontSize="xs">{{ numberFormat(payload.statistics.subscriberCount) }} subscribers</c-text>
           <c-badge mr="1" variant-color="green" v-for="lang in payload.lang" :key="lang">{{ lang }}</c-badge>
+          <!-- <c-text fontSize="xs">{{ payload.snippet.thumbnails.default.url }}</c-text> -->
         </c-box>
       </c-box>
     </c-box>
-    <channel-drawer :isOpen="isOpen" @close="close" />
+    <channel-drawer v-if="isOpen" :isOpen="isOpen" @close="close" :payload="meta" />
   </c-box>
 </template>
 
@@ -38,6 +39,7 @@ import {
   CBadge
 } from "@chakra-ui/vue";
 import ChannelDrawer from '../components/home/ChannelDrawer';
+import { useSearch } from '../nuxtUtils/index'
 export default {
   props: ['payload'],
   components: {
@@ -50,15 +52,17 @@ export default {
   },
   data () {
     return {
-      isOpen: false
+      isOpen: false,
+      meta: {}
     }
   },
   methods: {
     close () {
       this.isOpen = false;
     },
-    number_format (number) {
-      return new Intl.NumberFormat().format(number)
+    selectChannel () {
+      this.isOpen = true;
+      this.meta = useSearch(this.payload.id)
     }
   }
 }

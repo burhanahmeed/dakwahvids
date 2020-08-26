@@ -28,13 +28,24 @@
       </c-box>
       <c-box p="4" align="center">
         <c-box w="80%">
-          <c-input placeholder="Basic usage" />
+          <c-input v-model.lazy="search" placeholder="Search channel" />
         </c-box>
       </c-box>
       <c-box px="4" pb="4" align="center">
         <c-box w="80%" align="left">
-          <template v-for="i in channels">
-            <Channel :key="i" :payload="i" />
+          <template v-if="channels.length > 0">
+            <template v-for="i in channels">
+              <Channel :key="i" :payload="i" />
+            </template>
+          </template>
+          <template v-else>
+            <c-box h="200px">
+              <c-box align="center" p="10%">
+                <c-text>
+                  No channel found
+                </c-text>
+              </c-box>
+            </c-box>
           </template>
         </c-box>
       </c-box>
@@ -64,6 +75,21 @@ export default {
     CImage,
     CBadge
   },
+  head () {
+    return {
+      title: 'DakwahVids',
+       meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'DakwahVids is a curated Islamic videos or lectural videos from mostly official Dakwah account. A place where ilms are collected here.'
+        }
+      ],
+      noscript: [
+        { innerHTML: 'Body No Scripts', body: true }
+      ],
+    }
+  },
   data () {
     return {
       showModal: false,
@@ -77,7 +103,23 @@ export default {
           color: 'gray.900'
         }
       },
-      channels: []
+      channels: [],
+      search: ''
+    }
+  },
+  watch: {
+    search (val) {
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+      this.timer = setTimeout(() => {
+        this.channels = this.master_channels.filter(el => {
+          if (el.snippet.title.toLowerCase().indexOf(val.toLowerCase()) != -1) {
+            return true
+          }
+        })
+      }, 800);
     }
   },
   computed: {
@@ -87,6 +129,7 @@ export default {
   },
   mounted () {
     this.channels = useFetch();
+    this.master_channels = this.channels;
   }
 }
 </script>
