@@ -16,6 +16,7 @@ export default {
   */
   head: {
     title: process.env.npm_package_name || '',
+    titleTemplate: '%s - A place where ilms are collected here',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -39,6 +40,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    '~/plugins/formatter'
   ],
   /*
   ** Auto import components
@@ -49,6 +51,9 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-112771033-4'
+    }]
   ],
   /*
   ** Nuxt.js modules

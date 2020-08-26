@@ -5,4 +5,12 @@ const useFetch = () => {
     return Channels;
 }
 
-module.exports = { useFetch }
+const useSearch = (id) => {
+    let obj = Channels.find(el => el.id == id);
+    if (obj) {
+        return obj;
+    }
+    return {};
+}
+
+module.exports = { useFetch, useSearch }
