@@ -12,7 +12,7 @@
             ></c-image>
           </c-box>
           <c-text fontSize="xl">
-            <span style="font-weight: 700">DakwahVids</span> is a curated Islamic videos or lectural videos from mostly official Dakwah account.
+            <span style="font-weight: 700">DakwahVids</span> is a curated list of islamic videos from official dakwah account on YouTube.
           </c-text>
         </c-box>
         <c-box w="60%">
